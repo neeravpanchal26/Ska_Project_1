@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
+// Global imports
+import {ElasticSearchService} from './GlobalServices/elastic-search.service';
+
 // Components imports
 import {DefaultComponent} from './Components/default/default.component';
 
@@ -11,7 +14,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ElasticSearchService]
 })
 export class AppRoutingModule {
 }
