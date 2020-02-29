@@ -6,6 +6,7 @@ import {ElasticSearchService} from './GlobalServices/elastic-search.service';
 
 // Components imports
 import {DefaultComponent} from './Components/default/default.component';
+import {PersonAddComponent} from './Components/person-add/person-add.component';
 
 // Routing Array
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ElasticSearchService]
+  providers: [ElasticSearchService],
+  entryComponents:[PersonAddComponent]
 })
 export class AppRoutingModule {
 }

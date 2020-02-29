@@ -1,29 +1,36 @@
 import {Injectable} from '@angular/core';
 
 // Custom imports
-import {Client} from 'elasticsearch';
+import {environment} from '../../environments/environment';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {RequestOptions} from 'http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElasticSearchService {
   // Global variable
-  private client: Client;
+  private apiUrl = environment.api;
 
   // Default constructor
-  constructor() {
-    if (!this.client) {
-      this.Connect();
-    }
+  constructor(private httpClient: HttpClient) {
   }
 
-  // Connection function
-  private Connect() {
-    this.client = new Client({host: 'http://localhost:9200', log: 'trace'});
+  // Get People Data
+  GetPeople(): Observable<any> {
+    return this.httpClient.get(this.apiUrl + 'ska_project_1/people/_search') as Observable<any>;
   }
 
-  // Connection availability check
-  isAvailable(): any {
-    return this.client.ping({requestTimeout: Infinity, body: 'NSP is here!'});
+  // Create person
+  AddPerson(param: IAddPerson): Observable<any> {
+    return this.httpClient.post(this.apiUrl + 'ska_project_1/people/', param) as Observable<any>;
   }
+}
+
+// Wrapper Interface
+export interface IAddPerson {
+  firstName: string;
+  lastName: string;
+  email: string;
 }

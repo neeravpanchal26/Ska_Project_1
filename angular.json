@@ -67,7 +67,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "skaproject1:build:production"
+              "browserTarget": "skaproject1:build:production",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },

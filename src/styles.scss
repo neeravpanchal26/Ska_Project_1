@@ -9,3 +9,17 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/*Form field width*/
+.mat-form-field {
+  width: 100%;
+}
+
+/*Mat spacer*/
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card{
+  margin: 15px;
+}

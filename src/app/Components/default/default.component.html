@@ -1,4 +1,49 @@
 <mat-toolbar color="primary">
   <span>My first app for SKA.</span>
 </mat-toolbar>
-<h3 class="col-md-12 text-center">Elasticsearch server status: {{status}}</h3>
+
+<mat-card class="mat-elevation-z8 m-3">
+  <mat-card-header>
+    <mat-icon mat-card-avatar>people</mat-icon>
+    <mat-card-title>People</mat-card-title>
+    <span class="spacer"></span>
+    <button mat-raised-button (click)="openDialog()" color="primary">
+      <mat-icon>person_add</mat-icon>
+      <span>Add person</span>
+    </button>
+
+  </mat-card-header>
+  <mat-card-content>
+    <!--Search-->
+    <mat-form-field>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="width: 80%">
+    </mat-form-field>
+
+    <!--Table-->
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="Person ID">
+        <mat-header-cell *matHeaderCellDef>Person ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row._id}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="First Name">
+        <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row._source.firstName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Last Name">
+        <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row._source.lastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row._source.email}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

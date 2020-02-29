@@ -1,0 +1,42 @@
+<h1>Add person</h1>
+<form (ngSubmit)="AddPerson(addPersonForm)" [formGroup]="addPersonForm">
+  <mat-form-field>
+    <input matInput placeholder="First name" type="text" formControlName="name">
+    <!--Form Validation-->
+    <mat-error *ngIf="addPersonForm.controls['name'].hasError('required')">First name is required.
+    </mat-error>
+    <mat-error *ngIf="addPersonForm.controls['name'].hasError('maxlength')">First name may only
+      contain 45 characters.
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field>
+    <input matInput placeholder="Last name" type="text" formControlName="surname">
+    <!--Form Validation-->
+    <mat-error *ngIf="addPersonForm.controls['surname'].hasError('required')">Last name is
+      required.
+    </mat-error>
+    <mat-error *ngIf="addPersonForm.controls['surname'].hasError('maxlength')">Last name may only
+      contain 45 characters.
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field>
+    <input matInput placeholder="Email address" formControlName="email" type="email">
+    <!--Form Validation-->
+    <mat-error *ngIf="addPersonForm.controls['email'].hasError('required')">Email is required.
+    </mat-error>
+    <mat-error *ngIf="addPersonForm.controls['email'].hasError('maxlength')">Email may only be 200
+      characters.
+    </mat-error>
+    <mat-error *ngIf="addPersonForm.controls['email'].hasError('pattern')">Check your email format.
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+  <button mat-flat-button color="primary" type="submit">Add person</button>
+</form>
